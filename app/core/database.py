@@ -1,11 +1,14 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.orm import declarative_base
+from .config import settings
+
 import os 
 
-database_url=os.getenv("DATABASE_URL","mysql+pymysql://root:root@localhost:3306/ContactManagerDB")
-engine= create_engine(database_url
-                      )
+database_url=settings.DATABASE_URL
+
+engine=create_engine(database_url)
+
 LocalSession= sessionmaker(autocommit=False, autoFlush=False, bind=engine)
 
 def getDatabase():
